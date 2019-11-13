@@ -8,7 +8,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene; 
 import javafx.scene.control.*; 
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage; 
 
@@ -23,18 +22,19 @@ public class VisualizeSpoon extends Application {
 		//set title
 		s.setTitle("Spoon Assassin Assignment"); 
 
-		//new elements
+		//initialize new javafx elements
 		TextField b = new TextField(); 
 		SplitPane sp = new SplitPane(); 
 		Button addButton = new Button("Add New Assassin");
 		Button generateButton = new Button("Generate New Target List");
 		Button removeButton = new Button("Remove Assassin");
 
-		//List of labels
+		//List of labels for players
 		ArrayList<Label> playerList = new ArrayList<Label>();
 
 		VBox leftControl  = new VBox(new Label("Existing Assassins"));
 		VBox rightControl = new VBox(new Label("Add New Assassins"));
+		//add fields to panels
 		rightControl.getChildren().add(b);
 		rightControl.getChildren().add(addButton);
 		rightControl.getChildren().add(removeButton);
@@ -77,6 +77,7 @@ public class VisualizeSpoon extends Application {
 		}; 
 		removeButton.setOnAction(event2);
 
+		//add everything to panel
 		sp.getItems().addAll(leftControl, rightControl);
 
 

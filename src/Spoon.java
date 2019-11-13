@@ -1,3 +1,6 @@
+//Author: Sushi
+//A simple program for generating list of targets for Spoon Assassin
+
 import java.util.ArrayList;
 
 public class Spoon<E> {
@@ -6,15 +9,19 @@ public class Spoon<E> {
 	ArrayList<E> targetList = new ArrayList<E>();
 	private E newTarget = null;
 
+	//randomly assign targets
 	public ArrayList<E> randomAssignment(ArrayList<E> player) {
 		for (int i = 0; i < player.size(); i++) {
 			generateNewTarget();
+			//check if the new target generated is duplicated or itself
 			if (!checkDuplicateTarget(i, newTarget) && notSelf(i, newTarget)) {
 				targetList.add(newTarget);
 			}
+			//if it is duplicated or itself, set it as null for now
 			else {
 				targetList.add(null);
 			}
+			//handle duplicate targets and self targets
 			while (checkDuplicateTarget(i, newTarget) || !notSelf(i, newTarget)) {
 				generateNewTarget();
 				targetList.set(i, newTarget);
@@ -23,6 +30,7 @@ public class Spoon<E> {
 		return targetList;
 	}
 	
+	//return the target list generated as formatted string
 	public String assignment(ArrayList<E> player) {
 		ArrayList<E> list = randomAssignment(player);
 		String result = "";
@@ -32,6 +40,7 @@ public class Spoon<E> {
 		return result;
 	}
 	
+	//randomly generate a new player in the range of player's list
 	private void generateNewTarget() {
 		newTarget = player.get((int)(player.size() * Math.random()));
 	}
@@ -55,6 +64,7 @@ public class Spoon<E> {
 	}
 	
 
+	//Test algorithm in main
 	public static void main(String [] args) {
 		Spoon<String> assassins = new Spoon<String>();
 
